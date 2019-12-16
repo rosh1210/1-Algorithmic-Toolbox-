@@ -1,0 +1,134 @@
+Why study algorithms?
+
+Given a problem statement, 
+  1) you aren't clear how to do that problem,
+  2)Simple solutions are too slow
+ 
+Algortihms:-
+    Fibonacci numbers
+    GCD
+
+Takes too much time, so you need something better. Finding a faster algorithm is necessary
+
+1) Fibonacci Numbers
+      0 1 1 2 3 5 8 13 21 34................
+    F0 = 0
+    F1 = 1
+    F(n) = F(n-1) + F(n-2)
+    
+   FACT:- Fibo numbers were first developed to study Rabbit populations
+   
+                                          NAIVE ALGORITHM 
+   
+  | Simple implementation of Fibo nos:
+  | FibRecurs(n)
+  |    if n <= 1:
+  |       return n
+  |    else:
+  |       return FibRecurs(n-1) + FibRecurs(n-2) 
+  
+  T(n) = 2    if n <= 1
+       = 3 + T(n-1) + t(n-2) number of lines if n >= 2
+   Therefore, we can say T(n) >>>>> F(n). T(100) will take 56000years to compute at 16HZ
+   
+                                    Why it is so slow??????
+                                    ========================
+   
+                                             F(n)
+                                        /         \
+                                      F(n-1)      F(n-2)
+                                      /   \       /     \
+                                    F(n-2) n-3  n-3     n-4
+                                    .                     .
+                                   .                        .
+                                  .                           .
+    
+                                      EFFICIENT ALGORITHM
+                                      
+ Imitate the hand computation
+ 0 1 1 2 3 5 8 13 21 34................
+  0+1 = 1
+  1+1 = 2
+  1+2 = 3
+  2+3 = 5
+  3+5 = 8
+  .
+  .
+  .
+  Creating an array F[0....n]
+  
+  F[0] -> 0
+  F[1] -> 1
+  for i = 2 to n:
+      F[i] = F[i-1] + F[i-2]
+      
+  return F[n]
+  
+  T(n) = 2n+2
+  T(100)= 202 lines of code will be executed. 
+                       |-------------------------------------------------------|
+                       | MORAL:-THE RIGHT ALGORTIHM MAKES ALL THE DIFFERENCE   |
+                       |-------------------------------------------------------|
+    
+  Greatest common divisor
+  GCD(a,b)
+  1) Put fraction a/b in simplest form
+  2) Divide numr and denmr by d to get (a/d)/(b/d)
+      d should be such that 
+          * It should divide both a and b
+          * d should be as large as possible
+   For example GCD(10,4) = 2 coz 2 is the largest number which divides both numbers...
+   
+   GCD is important concept of Number theory..
+   
+                                         NAIVE ALGORITHM 
+   
+  | Simple implementation of GCD:
+  | best -> 0
+  | for d from 1 to a+b   
+  |     if d|a and d|b:      
+  |         best -> d
+  | return best        
+                                   
+  Runtime =  approx (a+b)
+  Very slow for 20 digit numbers, 1000 years to run this computation
+    
+    
+                                          EFFICIENT ALGORITHM
+                                          (EUCLIDEAN ALGORITHM) 
+                                          
+   let a' be the remainder when a is divided by b
+   then gcd(a,b) = gcd(a',b) = gcd(b, a')
+   ex:- gcd(10,30) 
+   a' = 10
+   gcd(10,30)=10=gcd(20,10)=gcd(30,10)
+   
+   
+   |EuclidGCD(a,b)
+   |if b = 0
+   | return a      [the largest number which divides both is the number itself]
+   |a' <- the remainder when a is divided by b
+   | return EuclidGCD(b,a')
+   
+   Example:
+            gcd(3918848,1653264) = gcd(1653264,612320) = gcd(612320, 428624) = gcd(428624, 183696) = gcd(183696, 61232) = gcd(61232,0)
+            = 61232
+            6 steps
+           * Each step reduce the size of the number involved by a factor of about 2.
+           * Takes about log(ab) steps
+           * GCD of 100 digit numbers takes about 600 steps
+           
+   
+   
+                                              COMPUTING RUNTIMES
+    
+  Depends on:
+  1)Computer you use
+  2)System architecture
+  3)Complier being used
+  4)Details of memory heirarchy
+  
+  Asymptotic Notation
+  ================================
+  How does runtime scale with input size is determined by Asymptotic runtime!!
+
